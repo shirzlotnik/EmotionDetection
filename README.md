@@ -124,3 +124,25 @@ for i in range(1,8):
 plt.show()
 ```
 ![Images](https://github.com/shirzlotnik/EmotionDetection/blob/main/angry.png?raw=true)
+
+
+## Pre-processing data
+
+1. Splitting dataset into 3 parts: train, validation, test
+2. Convert strings to lists of integers
+3. Reshape to 48x48 and normalise grayscale image with 255.0
+4. Perform one-hot encoding label, e.g. class 3 to [0,0,0,1,0,0,0]
+
+```python
+
+#split data into training, validation and test set
+data_train = data[data['Usage']=='Training'].copy()
+data_val   = data[data['Usage']=='PublicTest'].copy()
+data_test  = data[data['Usage']=='PrivateTest'].copy()
+print("train shape: {}, \nvalidation shape: {}, \ntest shape: {}".format(
+        data_train.shape, data_val.shape, data_test.shape))
+```
+
+train shape: (28709, 3), 
+validation shape: (3589, 3), 
+test shape: (3589, 3)
