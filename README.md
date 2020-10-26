@@ -174,3 +174,7 @@ plt.show()
 ```
 
 ![Charts](https://github.com/shirzlotnik/EmotionDetection/blob/main/chart1.png?raw=true)
+
+Notice that the later two subplots share the same y-axis with the first subplot.  
+The size of train, validation, test are 80%, 10% and 10%, respectively.  
+The exact number of each class of these datasets are written on top of their x-axis bar.  
