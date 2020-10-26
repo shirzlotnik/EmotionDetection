@@ -67,3 +67,31 @@ Training       28709
 PublicTest      3589  
 PrivateTest     3589  
 Name: Usage, dtype: int64  
+
+
+```python
+ # check target labels
+emotion_map = {0: 'Angry', 1: 'Digust', 2: 'Fear', 3: 'Happy', 4: 'Sad', 5: 'Surprise', 6: 'Neutral'}
+emotion_counts = data['emotion'].value_counts(sort=False).reset_index()
+emotion_counts.columns = ['emotion', 'number']
+emotion_counts['emotion'] = emotion_counts['emotion'].map(emotion_map)
+print(emotion_counts)
+```
+ | emotion | number 
+------------ | ------------- | ------------- 
+0 | Angry | 4953
+1 | Digust | 547
+2 | Fear | 5121
+3 | Happy | 8989
+4 | Sad | 6077
+5 | Surprise | 4002
+6 | Neutral | 6198
+```python
+# Plotting a bar graph of the class distributions
+plt.figure(figsize=(6,4))
+sns.barplot(emotion_counts.emotion, emotion_counts.number)
+plt.title('Class distribution')
+plt.ylabel('Number', fontsize=12)
+plt.xlabel('Emotions', fontsize=12)
+plt.show()
+```
