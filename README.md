@@ -143,6 +143,34 @@ print("train shape: {}, \nvalidation shape: {}, \ntest shape: {}".format(
         data_train.shape, data_val.shape, data_test.shape))
 ```
 
-train shape: (28709, 3), 
-validation shape: (3589, 3), 
-test shape: (3589, 3)
+train shape: (28709, 3),   
+validation shape: (3589, 3),  
+test shape: (3589, 3)  
+
+```python
+# barplot class distribution of train, val and test
+emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
+
+def setup_axe(axe,df,title):
+    df['emotion'].value_counts(sort=False).plot(ax=axe, kind='bar', rot=0)
+    axe.set_xticklabels(emotion_labels)
+    axe.set_xlabel("Emotions")
+    axe.set_ylabel("Number")
+    axe.set_title(title)
+    
+    # set individual bar lables using above list
+    for i in axe.patches:
+        # get_x pulls left or right; get_height pushes up or down
+        axe.text(i.get_x()-.05, i.get_height()+120, \
+                str(round((i.get_height()), 2)), fontsize=14, color='dimgrey',
+                    rotation=0)
+
+   
+fig, axes = plt.subplots(1,3, figsize=(20,8), sharey=True)
+setup_axe(axes[0],data_train,'train')
+setup_axe(axes[1],data_val,'validation')
+setup_axe(axes[2],data_test,'test')
+plt.show()
+```
+
+![Charts](https://github.com/shirzlotnik/EmotionDetection/blob/main/chart1.png?raw=true)
