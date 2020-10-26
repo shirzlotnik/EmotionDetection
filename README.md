@@ -48,5 +48,11 @@ print(data.shape)
 # preview first 5 row of data
 print(data.head(5))
 ```
-
+Index | emotion | pixels | Usage
+------------ | ------------- | ------------- | -------------
+0 | 0 | 0 80 82 72 58 58 60 63 54 58 60 48 ... | Training
+1 | 0 | 151 150 147 155 148 133 111 140 170... | Training
+2 | 2 | 231 212 156 164 174 138 161 173 182... | Training
+3 | 4 | 24 32 36 30 32 23 19 20 30 41 21 22... | Training
+4 | 6 | 4 0 0 0 0 0 0 0 0 0 0 0 3 15 23 28 ... | Training
 
