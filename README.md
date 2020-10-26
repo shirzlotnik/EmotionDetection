@@ -96,3 +96,4 @@ plt.ylabel('Number', fontsize=12)
 plt.xlabel('Emotions', fontsize=12)
 plt.show()
 ```
+![class distribution](file:///Users/shirzlotnik/Desktop/Python%20Project%20Images/class_distribution.png)
