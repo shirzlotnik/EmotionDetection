@@ -1,5 +1,9 @@
 # EmotionDetection
 
+```python
+
+```
+
 ## Install Dataset
 install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project   
 fer2013.csv
@@ -178,3 +182,40 @@ plt.show()
 Notice that the later two subplots share the same y-axis with the first subplot.  
 The size of train, validation, test are 80%, 10% and 10%, respectively.  
 The exact number of each class of these datasets are written on top of their x-axis bar.  
+
+```python
+#initilize parameters
+num_classes = 7 
+width, height = 48, 48
+num_epochs = 50
+batch_size = 64
+num_features = 64
+```
+
+```python
+"""
+CRNO stands for Convert, Reshape, Normalize, One-hot encoding
+(i) convert strings to lists of integers
+(ii) reshape and normalise grayscale image with 255.0
+(iii) one-hot encoding label, e.g. class 3 to [0,0,0,1,0,0,0]
+"""
+
+def CRNO(df, dataName):
+    df['pixels'] = df['pixels'].apply(lambda pixel_sequence: [int(pixel) for pixel in pixel_sequence.split()])
+    data_X = np.array(df['pixels'].tolist(), dtype='float32').reshape(-1,width, height,1)/255.0   
+    data_Y = to_categorical(df['emotion'], num_classes)  
+    print(dataName, "_X shape: {}, ", dataName, "_Y shape: {}".format(data_X.shape, data_Y.shape))
+    return data_X, data_Y
+
+    
+train_X, train_Y = CRNO(data_train, "train") #training data
+val_X, val_Y     = CRNO(data_val, "val") #validation data
+test_X, test_Y   = CRNO(data_test, "test") #test data
+```
+train _X shape: {},  train _Y shape: (28709, 48, 48, 1)  
+val _X shape: {},  val _Y shape: (3589, 48, 48, 1)  
+test _X shape: {},  test _Y shape: (3589, 48, 48, 1)  
+
+```python
+
+```
