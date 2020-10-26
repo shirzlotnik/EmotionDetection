@@ -1,7 +1,7 @@
 # EmotionDetection
 
 ## Install Dataset
-install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project -> 
+install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project   
 fer2013.csv
 
 
@@ -63,7 +63,7 @@ Index | emotion | pixels | Usage
 # 80% training, 10% validation and 10% test
 print(data.Usage.value_counts())
 ```
-Training       28709
-PublicTest      3589
-PrivateTest     3589
-Name: Usage, dtype: int64
+Training       28709  
+PublicTest      3589  
+PrivateTest     3589  
+Name: Usage, dtype: int64  
