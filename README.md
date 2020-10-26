@@ -1,7 +1,10 @@
 # EmotionDetection
 
-## Installation
+## Install Dataset
+install dataset from [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data)
 
+
+## Installation
 
 ```bash
 pip install numpy
