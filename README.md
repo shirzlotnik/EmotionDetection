@@ -1,7 +1,7 @@
 # EmotionDetection
 
 ## Install Dataset
-install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project
+install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project -> 
 fer2013.csv
 
 
