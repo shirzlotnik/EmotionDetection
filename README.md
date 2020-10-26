@@ -77,15 +77,16 @@ emotion_counts.columns = ['emotion', 'number']
 emotion_counts['emotion'] = emotion_counts['emotion'].map(emotion_map)
 print(emotion_counts)
 ```
- | emotion | number 
+ A | emotion | number  
 ------------ | ------------- | ------------- 
-0 | Angry | 4953
-1 | Digust | 547
-2 | Fear | 5121
-3 | Happy | 8989
-4 | Sad | 6077
+0 | Angry | 4953  
+1 | Digust | 547  
+2 | Fear | 5121  
+3 | Happy | 8989  
+4 | Sad | 6077  
 5 | Surprise | 4002
 6 | Neutral | 6198
+
 ```python
 # Plotting a bar graph of the class distributions
 plt.figure(figsize=(6,4))
