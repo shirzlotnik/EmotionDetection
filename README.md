@@ -48,6 +48,8 @@ print(data.shape)
 # preview first 5 row of data
 print(data.head(5))
 ```
+(35887, 3)
+
 Index | emotion | pixels | Usage
 ------------ | ------------- | ------------- | -------------
 0 | 0 | 0 80 82 72 58 58 60 63 54 58 60 48 ... | Training
@@ -56,3 +58,12 @@ Index | emotion | pixels | Usage
 3 | 4 | 24 32 36 30 32 23 19 20 30 41 21 22... | Training
 4 | 6 | 4 0 0 0 0 0 0 0 0 0 0 0 3 15 23 28 ... | Training
 
+```python
+# check usage values
+# 80% training, 10% validation and 10% test
+print(data.Usage.value_counts())
+```
+Training       28709
+PublicTest      3589
+PrivateTest     3589
+Name: Usage, dtype: int64
