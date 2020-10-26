@@ -96,4 +96,4 @@ plt.ylabel('Number', fontsize=12)
 plt.xlabel('Emotions', fontsize=12)
 plt.show()
 ```
-![class distribution](///Users/shirzlotnik/Desktop/Python%20Project%20Images/class_distribution.png)
+![class distribution](https://github.com/shirzlotnik/EmotionDetection/blob/main/class_distribution.png?raw=true)
