@@ -218,6 +218,144 @@ train _X shape: {},  train _Y shape: (28709, 48, 48, 1)
 val _X shape: {},  val _Y shape: (3589, 48, 48, 1)  
 test _X shape: {},  test _Y shape: (3589, 48, 48, 1)  
 
-```python
 
+## Building CNN Model
+### CNN Architecture:
+    Conv -> BN -> Activation -> Conv -> BN -> Activation -> MaxPooling
+    Conv -> BN -> Activation -> Conv -> BN -> Activation -> MaxPooling
+    Conv -> BN -> Activation -> Conv -> BN -> Activation -> MaxPooling
+    Flatten
+    Dense -> BN -> Activation
+    Dense -> BN -> Activation
+    Dense -> BN -> Activation
+    Output layer
+    
+    
+```python
+model = Sequential()
+
+#module 1
+model.add(Conv2D(2*2*num_features, kernel_size=(3, 3), input_shape=(width, height, 1), data_format='channels_last'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(2*2*num_features, kernel_size=(3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+#module 2
+model.add(Conv2D(2*num_features, kernel_size=(3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(2*num_features, kernel_size=(3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+#module 3
+model.add(Conv2D(num_features, kernel_size=(3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Conv2D(num_features, kernel_size=(3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+#flatten
+model.add(Flatten())
+
+#dense 1
+model.add(Dense(2*2*2*num_features))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+
+#dense 2
+model.add(Dense(2*2*num_features))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+
+#dense 3
+model.add(Dense(2*num_features))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+
+#output layer
+model.add(Dense(num_classes, activation='softmax'))
+
+model.compile(loss='categorical_crossentropy', 
+              optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-7), 
+              metrics=['accuracy'])
+
+model.summary()
 ```
+
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 46, 46, 256)       2560      
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 46, 46, 256)       1024      
+_________________________________________________________________
+activation_1 (Activation)    (None, 46, 46, 256)       0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 46, 46, 256)       590080    
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 46, 46, 256)       1024      
+_________________________________________________________________
+activation_2 (Activation)    (None, 46, 46, 256)       0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 23, 23, 256)       0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 23, 23, 128)       295040    
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 23, 23, 128)       512       
+_________________________________________________________________
+activation_3 (Activation)    (None, 23, 23, 128)       0         
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 23, 23, 128)       147584    
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 23, 23, 128)       512       
+_________________________________________________________________
+activation_4 (Activation)    (None, 23, 23, 128)       0         
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 11, 11, 128)       0         
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 11, 11, 64)        73792     
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 11, 11, 64)        256       
+_________________________________________________________________
+activation_5 (Activation)    (None, 11, 11, 64)        0         
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 11, 11, 64)        36928     
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 11, 11, 64)        256       
+_________________________________________________________________
+activation_6 (Activation)    (None, 11, 11, 64)        0         
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 5, 5, 64)          0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1600)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 512)               819712    
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 512)               2048      
+_________________________________________________________________
+activation_7 (Activation)    (None, 512)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 256)               131328    
+_________________________________________________________________
+batch_normalization_8 (Batch (None, 256)               1024      
+_________________________________________________________________
+activation_8 (Activation)    (None, 256)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 128)               32896     
+_________________________________________________________________
+batch_normalization_9 (Batch (None, 128)               512       
+_________________________________________________________________
+activation_9 (Activation)    (None, 128)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 7)                 903       
+=================================================================
+Total params: 2,137,991
+Trainable params: 2,134,407
+Non-trainable params: 3,584
