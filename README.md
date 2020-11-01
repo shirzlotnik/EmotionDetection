@@ -40,6 +40,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
+Than it will print this if everything work fine  
+Using TensorFlow backend.  
 
 ## Dataset Overview
 You need to make sure you know the location of the file in directory
