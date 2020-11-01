@@ -324,6 +324,6 @@ batch_normalization_9 (Batch | (None, 128)         | 512
 activation_9 (Activation)    | (None, 128)         | 0   
 dense_4 (Dense)              | (None, 7)           | 903   
 
-Total params: 2,137,991
-Trainable params: 2,134,407
-Non-trainable params: 3,584
+Total params: 2,137,991  
+Trainable params: 2,134,407  
+Non-trainable params: 3,584  
