@@ -254,36 +254,36 @@ print_Usage_Information(data_test.shape[0],testSort,'testing data',emotion_label
 
 ### CURRENT VERSION
 
-![Traininh Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/train1.png?raw=true)
+![Traininh Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/train1.png?raw=true)  
 
-Number of Happy in training data = 7215 => 25.13149186666202%
-Number of Neutral in training data = 4965 => 17.294228290779895%
-Number of Sad in training data = 4830 => 16.82399247622697%
-Number of Fear in training data = 4097 => 14.270786164617366%
-Number of Angry in training data = 3995 => 13.91549688251071%
-Number of Surprise in training data = 3171 => 11.045316799609878%
-Number of Disgust in training data = 436 => 1.5186875195931588%
+Number of Happy in training data = 7215 => 25.13149186666202%  
+Number of Neutral in training data = 4965 => 17.294228290779895%  
+Number of Sad in training data = 4830 => 16.82399247622697%  
+Number of Fear in training data = 4097 => 14.270786164617366%  
+Number of Angry in training data = 3995 => 13.91549688251071%  
+Number of Surprise in training data = 3171 => 11.045316799609878%  
+Number of Disgust in training data = 436 => 1.5186875195931588%  
 
-![Validation Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/val1.png?raw=true)
+![Validation Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/val1.png?raw=true)  
 
-Number of Happy in validation data = 895 => 24.93730844246308%
-Number of Sad in validation data = 653 => 18.19448314293675%
-Number of Neutral in validation data = 607 => 16.912789077737532%
-Number of Fear in validation data = 496 => 13.820005572582891%
-Number of Angry in validation data = 467 => 13.011981053218166%
-Number of Surprise in validation data = 415 => 11.56310950125383%
-Number of Disgust in validation data = 56 => 1.560323209807746%
+Number of Happy in validation data = 895 => 24.93730844246308%  
+Number of Sad in validation data = 653 => 18.19448314293675%  
+Number of Neutral in validation data = 607 => 16.912789077737532%  
+Number of Fear in validation data = 496 => 13.820005572582891%  
+Number of Angry in validation data = 467 => 13.011981053218166%  
+Number of Surprise in validation data = 415 => 11.56310950125383%  
+Number of Disgust in validation data = 56 => 1.560323209807746%  
 
-![Testing Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/test1.png?raw=true)
+![Testing Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/test1.png?raw=true)  
 
-Number of Happy in testing data = 879 => 24.49150181108944%
-Number of Neutral in testing data = 626 => 17.44218445249373%
-Number of Sad in testing data = 594 => 16.550571189746446%
-Number of Fear in testing data = 528 => 14.711618835330176%
-Number of Angry in testing data = 491 => 13.68069100027863%
-Number of Surprise in testing data = 416 => 11.590972415714685%
-Number of Disgust in testing data = 55 => 1.5324602953468933%
-
+Number of Happy in testing data = 879 => 24.49150181108944%  
+Number of Neutral in testing data = 626 => 17.44218445249373%  
+Number of Sad in testing data = 594 => 16.550571189746446%  
+Number of Fear in testing data = 528 => 14.711618835330176%  
+Number of Angry in testing data = 491 => 13.68069100027863%  
+Number of Surprise in testing data = 416 => 11.590972415714685%  
+Number of Disgust in testing data = 55 => 1.5324602953468933%  
+  
 ```python
 #initilize parameters
 num_classes = 7 
