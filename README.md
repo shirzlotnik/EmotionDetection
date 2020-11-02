@@ -157,6 +157,8 @@ test shape: (3589, 3)
 # barplot class distribution of train, val and test
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
+"""
+# OLD VERSION WITH NUMVERS ABOVE THE BARS
 def setup_axe(axe,df,title):
     df['emotion'].value_counts(sort=False).plot(ax=axe, kind='bar', rot=0)
     axe.set_xticklabels(emotion_labels)
@@ -171,19 +173,116 @@ def setup_axe(axe,df,title):
                 str(round((i.get_height()), 2)), fontsize=14, color='dimgrey',
                     rotation=0)
 
+
    
 fig, axes = plt.subplots(1,3, figsize=(20,8), sharey=True)
 setup_axe(axes[0],data_train,'train')
 setup_axe(axes[1],data_val,'validation')
 setup_axe(axes[2],data_test,'test')
 plt.show()
+"""
 ```
 
+### OLD VERSION
 ![Charts](https://github.com/shirzlotnik/EmotionDetection/blob/main/chart1.png?raw=true)
 
 Notice that the later two subplots share the same y-axis with the first subplot.  
 The size of train, validation, test are 80%, 10% and 10%, respectively.  
 The exact number of each class of these datasets are written on top of their x-axis bar.  
+
+```python
+# current version
+
+def Setup_axe(df,title):
+    emotion_map = {0: 'Angry', 1: 'Digust', 2: 'Fear', 3: 'Happy', 4: 'Sad', 5: 'Surprise', 6: 'Neutral'}
+    emotion_Count = df['emotion'].value_counts(sort=False).reset_index()
+    emotion_Count.columns = ['emotion', 'number']
+    emotion_Count['emotion'] = emotion_Count['emotion'].map(emotion_map)
+    
+    sns.barplot(emotion_Count.emotion, emotion_Count.number)
+    plt.title(title)
+    plt.ylabel('Number', fontsize=12)
+    plt.xlabel('Emotions', fontsize=12)
+    plt.show()
+    
+    
+def count_emotion_in_columns(df):
+    """
+    df: data
+    the function sort the data by usage and then by emotion
+    return: sorted data by usage
+    """
+    df_train = df[df['Usage']=='Training'].copy()
+    df_val   = df[df['Usage']=='PublicTest'].copy()
+    df_test  = df[df['Usage']=='PrivateTest'].copy()
+    
+    train1 = df_train['emotion'].value_counts().sort_index()
+    val1 = df_val['emotion'].value_counts().sort_index()
+    test1 = df_test['emotion'].value_counts().sort_index()
+    
+    train_sorted = sorted(train1.items(), key = lambda d: d[1], reverse = True)
+    val_sorted = sorted(val1.items(), key = lambda d: d[1], reverse = True)
+    test_sorted = sorted(test1.items(), key = lambda d: d[1], reverse = True)
+    
+    return train_sorted, val_sorted, test_sorted
+
+
+
+def print_Usage_Information(columns_count,data_sorted, usage, emotion_labels):
+    """
+    data_sorted: the sorted data by usage and then by emotion from count_emotion_in_columns()
+    usage: string, the usage
+    columns_count: data_train.shape[0]- how many of that usage total
+    print number of *emotion* in *usage*
+    """
+    for info in data_sorted:
+        print('Number of {} in {} = {} => {}%'.format(emotion_labels[info[0]],
+              usage, info[1], (info[1]/columns_count)*100))
+              
+              
+trainSort, valSort, testSort = count_emotion_in_columns(data)
+
+
+Setup_axe(data_train,'train')
+print_Usage_Information(data_train.shape[0],trainSort,'training data',emotion_labels)
+Setup_axe(data_val,'validation')
+print_Usage_Information(data_val.shape[0],valSort,'validation data',emotion_labels)
+Setup_axe(data_test,'test')
+print_Usage_Information(data_test.shape[0],testSort,'testing data',emotion_labels)
+
+```
+
+### CURRENT VERSION
+
+![Traininh Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/train1.png?raw=true)
+
+Number of Happy in training data = 7215 => 25.13149186666202%
+Number of Neutral in training data = 4965 => 17.294228290779895%
+Number of Sad in training data = 4830 => 16.82399247622697%
+Number of Fear in training data = 4097 => 14.270786164617366%
+Number of Angry in training data = 3995 => 13.91549688251071%
+Number of Surprise in training data = 3171 => 11.045316799609878%
+Number of Disgust in training data = 436 => 1.5186875195931588%
+
+![Validation Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/val1.png?raw=true)
+
+Number of Happy in validation data = 895 => 24.93730844246308%
+Number of Sad in validation data = 653 => 18.19448314293675%
+Number of Neutral in validation data = 607 => 16.912789077737532%
+Number of Fear in validation data = 496 => 13.820005572582891%
+Number of Angry in validation data = 467 => 13.011981053218166%
+Number of Surprise in validation data = 415 => 11.56310950125383%
+Number of Disgust in validation data = 56 => 1.560323209807746%
+
+![Testing Chart](https://github.com/shirzlotnik/EmotionDetection/blob/main/test1.png?raw=true)
+
+Number of Happy in testing data = 879 => 24.49150181108944%
+Number of Neutral in testing data = 626 => 17.44218445249373%
+Number of Sad in testing data = 594 => 16.550571189746446%
+Number of Fear in testing data = 528 => 14.711618835330176%
+Number of Angry in testing data = 491 => 13.68069100027863%
+Number of Surprise in testing data = 416 => 11.590972415714685%
+Number of Disgust in testing data = 55 => 1.5324602953468933%
 
 ```python
 #initilize parameters
