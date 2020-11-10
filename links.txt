@@ -1,0 +1,4 @@
+create diagram
+https://yuml.me/diagram/activity/samples
+good tutorial
+https://towardsdatascience.com/face-detection-recognition-and-emotion-detection-in-8-lines-of-code-b2ce32d4d5de
