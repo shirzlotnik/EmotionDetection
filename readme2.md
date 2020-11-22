@@ -106,5 +106,5 @@ plt.title('Class distribution')
 plt.ylabel('Number', fontsize=12)
 plt.xlabel('Emotions', fontsize=12)
 plt.show()
-
+```
 ![class distribution](https://github.com/shirzlotnik/EmotionDetection/blob/main/new_graph_usage.png?raw=true)
