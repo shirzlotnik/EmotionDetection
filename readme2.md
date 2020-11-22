@@ -108,3 +108,33 @@ plt.xlabel('Emotions', fontsize=12)
 plt.show()
 ```
 ![class distribution](https://github.com/shirzlotnik/EmotionDetection/blob/main/new_graph_usage.png?raw=true)
+
+### plot some images
+
+```python
+def row2image(row):
+    '''
+    row: row from the dataset, type='pandas.core.series.Series'
+    the function takes the information from the pixels and emotion columns and tranfer it to 48*48 image
+    return: 'numpy.ndarray' of the image
+    '''
+    pixels, emotion = row['pixels'], emotion_map[row['emotion']]
+    img = np.array(pixels.split())
+    img = img.reshape(48,48)
+    image = np.zeros((48,48,3))
+    image[:,:,0] = img
+    image[:,:,1] = img
+    image[:,:,2] = img
+    return np.array([image.astype(np.uint8), emotion])
+
+plt.figure(0, figsize=(12,6))
+for i in range(1,8):
+    face = data[data['emotion'] == i-1].iloc[0]
+    img = row2image(face)
+    plt.subplot(2,4,i)
+    plt.imshow(img[0])
+    plt.title(img[1])
+
+plt.show()
+```
+![Images](https://github.com/shirzlotnik/EmotionDetection/blob/main/angry.png?raw=true)
