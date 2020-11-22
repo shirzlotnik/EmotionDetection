@@ -64,6 +64,8 @@ Index | emotion | pixels | Usage
 3 | 4 | 24 32 36 30 32 23 19 20 30 41 21 22... | Training
 4 | 6 | 4 0 0 0 0 0 0 0 0 0 0 0 3 15 23 28 ... | Training
 
+
+print how many images there is for each usage
 ```python
 # check usage values
 # 80% training, 10% validation and 10% test
