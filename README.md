@@ -519,3 +519,120 @@ Epoch 32/50
  - 30s - loss: 0.6853 - acc: 0.7427 - val_loss: 1.0485 - val_acc: 0.6319  
 Epoch 33/50  
  - 30s - loss: 0.6645 - acc: 0.7518 - val_loss: 1.0801 - val_acc: 0.6319  
+ 
+ 
+ 
+  # NOT IN SCRIPT
+  
+ ## Visualize Training Performance
+ 
+ ```python
+ fig, axes = plt.subplots(1,2, figsize=(18, 6))
+# Plot training & validation accuracy values
+axes[0].plot(history.history['acc'])
+axes[0].plot(history.history['val_acc'])
+axes[0].set_title('Model accuracy')
+axes[0].set_ylabel('Accuracy')
+axes[0].set_xlabel('Epoch')
+axes[0].legend(['Train', 'Validation'], loc='upper left')
+
+# Plot training & validation loss values
+axes[1].plot(history.history['loss'])
+axes[1].plot(history.history['val_loss'])
+axes[1].set_title('Model loss')
+axes[1].set_ylabel('Loss')
+axes[1].set_xlabel('Epoch')
+axes[1].legend(['Train', 'Validation'], loc='upper left')
+plt.show()
+
+```
+
+![Results](https://github.com/shirzlotnik/EmotionDetection/blob/main/graphs2.png?raw=true)
+
+## Evaluate Test Performance
+
+```python
+test_true = np.argmax(test_Y, axis=1)
+test_pred = np.argmax(model.predict(test_X), axis=1)
+print("CNN Model Accuracy on test set: {:.4f}".format(accuracy_score(test_true, test_pred)))
+```
+CNN Model Accuracy on test set: 0.6662  
+
+## More Analysis using Confusion Matrix
+
+```python
+def plot_confusion_matrix(y_true, y_pred, classes,
+                          normalize=False,
+                          title=None,
+                          cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    """
+    if not title:
+        if normalize:
+            title = 'Normalized confusion matrix'
+        else:
+            title = 'Confusion matrix, without normalization'
+
+    # Compute confusion matrix
+    cm = confusion_matrix(y_true, y_pred)
+    # Only use the labels that appear in the data
+    classes = classes
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        #print("Normalized confusion matrix")
+    #else:
+        #print('Confusion matrix, without normalization')
+
+    #print(cm)
+
+    fig, ax = plt.subplots(figsize=(12,6))
+    im = ax.imshow(cm, interpolation='nearest', cmap=cmap)
+    ax.figure.colorbar(im, ax=ax)
+    # We want to show all ticks...
+    ax.set(xticks=np.arange(cm.shape[1]),
+           yticks=np.arange(cm.shape[0]),
+           # ... and label them with the respective list entries
+           xticklabels=classes, yticklabels=classes,
+           title=title,
+           ylabel='True label',
+           xlabel='Predicted label')
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    fmt = '.2f' if normalize else 'd'
+    thresh = cm.max() / 2.
+    for i in range(cm.shape[0]):
+        for j in range(cm.shape[1]):
+            ax.text(j, i, format(cm[i, j], fmt),
+                    ha="center", va="center",
+                    color="white" if cm[i, j] > thresh else "black")
+    fig.tight_layout()
+    return ax
+```
+```python
+# Plot normalized confusion matrix
+plot_confusion_matrix(test_true, test_pred, classes=emotion_labels, normalize=True, title='Normalized confusion matrix')
+plt.show()
+```
+
+![Normlized_Confusion](https://github.com/shirzlotnik/EmotionDetection/blob/main/normalized_confusion.png?raw=true)
+
+
+# Future Work
+```
+(i) To further fine tuning model using grid_search, specifically:
+    a. Different optimizer such as Adam, RMSprop, Adagrad.
+    b. experimenting dropout with batch-normalization.
+    c. experimenting different dropout rates. 
+
+(ii) To collect more data and train the model with balance dataset.
+```
+```python
+
+```
+
