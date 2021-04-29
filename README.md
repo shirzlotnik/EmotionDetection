@@ -1,3 +1,5 @@
+https://stackoverflow.com/questions/27265322/how-to-print-to-console-in-color
+
 # EmotionDetection
 
 ```python
