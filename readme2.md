@@ -5,7 +5,7 @@
 ```
 
 ## Install Dataset
-install dataset from this [kaggle](https://www.kaggle.com/lxyuan0420/facial-expression-recognition-using-cnn/data) project   
+install dataset    
 fer2013.csv
 
 
